@@ -1,0 +1,27 @@
+name: push_file
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Create Directory
+        run: mkdir -p SaiChenna1/study/.github/workflows/files
+
+      - name: Create File
+        run: |
+          echo "This is a test file." > SaiChenna1/study/.github/workflows/newfile.txt
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "SaiChenna1"
+          git config --global user.email "chennasai1@gmail.com"
+          git add SaiChenna1/sarala/.github/workflows/newfile.txt
+          git commit -m "Add new file"
+          git push https://${{ secrets.REPO_ACCESS_TOKEN1 }}@github.com/${{ github.repository }}.git
