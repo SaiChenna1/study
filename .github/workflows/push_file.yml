@@ -22,6 +22,6 @@ jobs:
         run: |
           git config --global user.name "SaiChenna1"
           git config --global user.email "chennasai1@gmail.com"
-          git add SaiChenna1/sarala/.github/workflows/newfile.txt
+          git add SaiChenna1/study/.github/workflows/newfile.txt
           git commit -m "Add new file"
           git push https://${{ secrets.REPO_ACCESS_TOKEN1 }}@github.com/${{ github.repository }}.git
