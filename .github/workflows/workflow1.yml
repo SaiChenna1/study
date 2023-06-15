@@ -17,4 +17,4 @@ jobs:
           repository: SaiChenna1/study
           event-type: job-request
       - name: script
-        run: echo "hi"
+        run: echo "hello"
