@@ -20,7 +20,7 @@ jobs:
           echo "This is a test file." > SaiChenna1/study/.github/workflows/files/newfile.txt
       - name: Commit and Push Changes
         env:
-         PAT_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN1 }}
+         PAT_TOKEN: ${{ secrets.REPO_ACCESS_BETATOKEN }}
         run: |
           git config --global user.name "SaiChenna1"
           git config --global user.email "chennasai1@gmail.com"
