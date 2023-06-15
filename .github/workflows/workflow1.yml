@@ -1,0 +1,20 @@
+name: Workflow1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch Job Request
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: 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
+          repository: SaiChenna1/study
+          event-type: job-request
+      - name: script
+        run: echo "hi"
