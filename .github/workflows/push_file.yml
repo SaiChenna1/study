@@ -26,5 +26,5 @@ jobs:
           git config --global user.email "chennasai1@gmail.com"
           git add SaiChenna1/study/.github/workflows/files/newfile.txt
           git commit -m "Add new file"
-          git remote set-url origin https://github.com/SaiChenna1/study.git
+          git remote set-url origin https://github.com/SaiChenna1/study
           git push origin HEAD
