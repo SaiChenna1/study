@@ -17,11 +17,11 @@ jobs:
 
       - name: Create File
         run: |
-          echo "This is a test file." > SaiChenna1/study/.github/workflows/newfile.txt
+          echo "This is a test file." > SaiChenna1/study/.github/workflows/files/newfile.txt
       - name: Commit and Push Changes
         run: |
           git config --global user.name "SaiChenna1"
           git config --global user.email "chennasai1@gmail.com"
-          git add SaiChenna1/study/.github/workflows/newfile.txt
+          git add SaiChenna1/study/.github/workflows/files/newfile.txt
           git commit -m "Add new file"
           git push https://github.com/${{ secrets.REPO_ACCESS_TOKEN1 }}@github.com/${{ github.repository }}.git
