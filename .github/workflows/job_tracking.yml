@@ -20,6 +20,6 @@ jobs:
         if: steps.job_status.outputs.can_dispatch == 'true'
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: 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
+          token: ghp_LMw08zuifjiHprBNzTYN
           repository: SaiChenna1/study
           event-type: job-request
