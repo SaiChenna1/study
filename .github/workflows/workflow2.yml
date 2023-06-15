@@ -2,9 +2,9 @@ name: Workflow2
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+#   push:
+#     branches:
+#       - main
 
 jobs:
   my-job:
@@ -13,7 +13,7 @@ jobs:
       - name: Dispatch Job Request
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: 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
+          token: ghp_LMw08zuifjiHprBNzTY
           repository: SaiChenna1/study
           event-type: job-request
       - name: script
