@@ -19,9 +19,12 @@ jobs:
         run: |
           echo "This is a test file." > SaiChenna1/study/.github/workflows/files/newfile.txt
       - name: Commit and Push Changes
+        env:
+         PAT_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN1 }}
         run: |
           git config --global user.name "SaiChenna1"
           git config --global user.email "chennasai1@gmail.com"
           git add SaiChenna1/study/.github/workflows/files/newfile.txt
           git commit -m "Add new file"
-          git push https://github.com/SaiChenna1/study.git
+          git remote set-url origin https://github.com/${{ github.repository }}.git
+          git push origin HEAD
