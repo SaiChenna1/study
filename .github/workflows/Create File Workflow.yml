@@ -34,7 +34,7 @@ jobs:
       - name: create lock
         run: |
          # file_exists=${{ steps.check_lock.outputs.file_exists }}
-          if [ "$file_exists" == "false" ]
+          if [ "$file_exists" == false ]
      
              run: |
              env:
