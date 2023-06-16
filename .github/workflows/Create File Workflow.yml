@@ -33,7 +33,7 @@ jobs:
           fi
       - name: create lock
         run: |
-          file_exists=${{ steps.check_lock.outputs.file_exists }}
+         # file_exists=${{ steps.check_lock.outputs.file_exists }}
           if [ "$file_exists" == "false" ]
      
              run: |
@@ -49,7 +49,7 @@ jobs:
               git push https://github.com/$GITHUB_REPOSITORY.git
       - name: waiting 
         run: |
-          file_exists=${{ steps.check_lock.outputs.file_exists }}
+         # file_exists=${{ steps.check_lock.outputs.file_exists }}
           if [ "$file_exists" == "true" ] 
                run: |
                echo " waiting for previous workflow completed"
