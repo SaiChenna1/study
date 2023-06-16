@@ -13,26 +13,48 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Check if group is running
+        id: check_lock
         run: |
-          if [ -f lock ]; then
-            echo "Group is already running, exiting workflow."
-            exit 0
-          fi
-
-      - name: Create file
-        run: touch lock
-        
-
-      - name: Commit and push file
-        env:
+          if [ -f lock1 ]; then
+            echo "::set-output name=lock::true"
+            else
+            echo " ::set-output name-lock::false"
+            fi
+      - name: exit if locked
+        run: |
+          if [["${{steps.check_lock.outputs.lock}}" == true ]]; then
+          echo " job is already running"
+          exit 0
+          else
+          run: |
+          touch lock1
+          env:
           ACCESS_TOKEN: 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
-        run: |
+         
           git config --local user.email "chennasai1@gmail.com"
           git config --local user.name "SaiChenna1"
-          git add lock
-          git commit -m "Add lock file"
+          git add lock1
+          git commit -m "Add lock1 file"
           git push https://github.com/$GITHUB_REPOSITORY.git
           # HEAD:refs/heads/$GITHUB_REF
+          
+          
+        
+
+#       - name: Create file
+#         run: touch lock
+        
+
+#       - name: Commit and push file
+#         env:
+#           ACCESS_TOKEN: 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
+#         run: |
+#           git config --local user.email "chennasai1@gmail.com"
+#           git config --local user.name "SaiChenna1"
+#           git add lock
+#           git commit -m "Add lock file"
+#           git push https://github.com/$GITHUB_REPOSITORY.git
+#           # HEAD:refs/heads/$GITHUB_REF
           
       
       - name: run the script
@@ -42,4 +64,4 @@ jobs:
 
       - name: Release shared resource
         run: |
-          rm lock
+          rm lock1
