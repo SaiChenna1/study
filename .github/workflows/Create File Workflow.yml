@@ -15,9 +15,11 @@ jobs:
         run: touch group.lock
 
       - name: Commit and push file
+        env:
+          ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN1 }}
         run: |
           git config --local user.email "chennasai1@gmail.com"
           git config --local user.name "SaiChenna1"
           git add group.lock
           git commit -m "Add group.lock file"
-          git push
+          git push https://github.com/$GITHUB_REPOSITORY.git HEAD:refs/heads/$GITHUB_REF
