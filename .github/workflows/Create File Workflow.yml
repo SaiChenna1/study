@@ -34,7 +34,7 @@ jobs:
       - name: create lock
         run: |
           file_exists=${{ steps.check_lock.outputs.file_exists }}
-          if [ "$file_exists" == "false" ]; then
+          if [ "$file_exists" == "false" ]
      
              run: |
              env:
@@ -47,7 +47,10 @@ jobs:
               git add lock4
               git commit -m "Add lock4 file"
               git push https://github.com/$GITHUB_REPOSITORY.git
-          else
+      - name: waiting 
+        run: |
+          file_exists=${{ steps.check_lock.outputs.file_exists }}
+          if [ "$file_exists" == "true" ] 
                run: |
                echo " waiting for previous workflow completed"
                sleep 10s
