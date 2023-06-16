@@ -42,7 +42,7 @@ jobs:
               touch lock2
               git config --local user.email "chennasai1@gmail.com"
               git config --local user.name "SaiChenna1"
-              git add lock4
+              git add lock2
               git commit -m "Add lock2 file"
               git push https://github.com/$GITHUB_REPOSITORY.git
       
