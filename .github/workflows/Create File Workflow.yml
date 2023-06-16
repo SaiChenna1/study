@@ -1,8 +1,9 @@
 name: Create File Workflow
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+#   push:
+#     branches:
+#       - main
 
 jobs:
   createFile:
@@ -16,7 +17,7 @@ jobs:
 
       - name: Commit and push file
         env:
-          ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN1 }}
+          ACCESS_TOKEN: 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
         run: |
           git config --local user.email "chennasai1@gmail.com"
           git config --local user.name "SaiChenna1"
