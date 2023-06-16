@@ -4,7 +4,8 @@ on:
 #   push:
 #     branches:
 #       - main
-
+env:
+      ACCESS_TOKEN: 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
 jobs:
   createFile:
     runs-on: ubuntu-latest
@@ -31,23 +32,24 @@ jobs:
             echo "File does not exist!"
           fi
       - name: create lock
-        if: steps.check_lock.outputs.lock != 'true'
-        env:
-            ACCESS_TOKEN: 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
         run: |
+          file_exists=${{ steps.check_lock.outputs.file_exists }}
+          if [ "$file_exists" == "false" ]; then
+     
+             run: |
      
           
-            touch lock2
+             touch lock2
             
-            git config --local user.email "chennasai1@gmail.com"
-            git config --local user.name "SaiChenna1"
-            git add lock2
-            git commit -m "Add lock2 file"
-            git push https://github.com/$GITHUB_REPOSITORY.git
-            else:
-            run: |
-              echo " waiting for previous workflow completed"
-              sleep 10s
+              git config --local user.email "chennasai1@gmail.com"
+              git config --local user.name "SaiChenna1"
+              git add lock2
+              git commit -m "Add lock2 file"
+              git push https://github.com/$GITHUB_REPOSITORY.git
+          else
+               run: |
+               echo " waiting for previous workflow completed"
+               sleep 10s
             
           
           
