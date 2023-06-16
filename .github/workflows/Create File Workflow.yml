@@ -33,7 +33,7 @@ jobs:
           fi
       - name: waiting
         run: |
-          while[[$(steps.check_lock.outputs.file_exists == 'true')]]; do echo " waiting" sleep 10 done
+          while[[$(steps.check_lock.outputs.file_exists == *'true'*)]]; do echo " waiting" sleep 10 done
           echo " waiting"
           sleep 10
           done
