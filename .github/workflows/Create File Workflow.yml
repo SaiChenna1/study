@@ -37,8 +37,8 @@ jobs:
                echo " waiting for previous workflow completed"
                sleep 10s
       - name: create lock
+          if [ steps.check_lock.outputs.file_exists == "false" ]
         run: |
-          if [ "$file_exists" == false ]
               touch lock2
               git config --local user.email "chennasai1@gmail.com"
               git config --local user.name "SaiChenna1"
