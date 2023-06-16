@@ -15,7 +15,7 @@ jobs:
       - name: Check if group is running
         id: check_lock
         run: |
-          if [ -f lock1 ]; then
+          if [ -f lock2 ]; then
             echo "::set-output name=lock::true"
             else
             echo " ::set-output name=lock::false"
@@ -27,14 +27,19 @@ jobs:
         run: |
      
           
-            touch lock1
+            touch lock2
             
             git config --local user.email "chennasai1@gmail.com"
             git config --local user.name "SaiChenna1"
-            git add lock1
-            git commit -m "Add lock1 file"
+            git add lock2
+            git commit -m "Add lock2 file"
             git push https://github.com/$GITHUB_REPOSITORY.git
-          # HEAD:refs/heads/$GITHUB_REF
+            else:
+            run: |
+              echo " waiting for previous workflow completed"
+              sleep 10s
+            
+          
           
           
         
@@ -49,8 +54,8 @@ jobs:
 #         run: |
 #           git config --local user.email "chennasai1@gmail.com"
 #           git config --local user.name "SaiChenna1"
-#           git add lock
-#           git commit -m "Add lock file"
+#           git add lock2
+#           git commit -m "Add lock2 file"
 #           git push https://github.com/$GITHUB_REPOSITORY.git
 #           # HEAD:refs/heads/$GITHUB_REF
           
@@ -60,6 +65,11 @@ jobs:
 
       # Rest of the workflow steps
 
-      - name: Release shared resource
+      - name: Delete file
         run: |
-          rm lock1
+          
+          file_path="SaiChenna1/study/lock2"
+
+          git rm "$file_path"
+          git commit -m "Delete file $file_path"
+          git push
