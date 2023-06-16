@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: file creating
+        run: touch file2 ${{ github.workspace }}
         
       - name: Create Directory
         run: mkdir -p SaiChenna1/study/.github/workflows/files
