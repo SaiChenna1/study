@@ -23,4 +23,5 @@ jobs:
           git config --local user.name "SaiChenna1"
           git add group.lock
           git commit -m "Add group.lock file"
-          git push https://github.com/$GITHUB_REPOSITORY.git HEAD:refs/heads/$GITHUB_REF
+          git push https://github.com/$GITHUB_REPOSITORY.git
+          # HEAD:refs/heads/$GITHUB_REF
