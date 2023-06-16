@@ -15,7 +15,7 @@ jobs:
       - name: Check if group is running
         id: check_lock
         run: |
-          file_path="SaiChenna1/study/lock2"
+          file_path="lock2"
           if [  -f "$file_path" ]; then
             echo "::set-output name=file_exists::true"
             else
