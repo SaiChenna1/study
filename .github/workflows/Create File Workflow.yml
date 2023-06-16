@@ -33,7 +33,7 @@ jobs:
           fi
       - name: waiting 
         run: |
-          if [ "$file_exists" == "true" ] 
+          if [ steps.check_lock.outputs.file_exists == "true" ] 
               
                echo " waiting for previous workflow completed"
                sleep 10s
