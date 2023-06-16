@@ -25,3 +25,18 @@ jobs:
           git commit -m "Add group.lock file"
           git push https://github.com/$GITHUB_REPOSITORY.git
           # HEAD:refs/heads/$GITHUB_REF
+          
+      - name: Check if group is running
+        run: |
+          if [ -f group.lock ]; then
+            echo "Group is already running, exiting workflow."
+            exit 0
+          fi
+      - name: run the script
+        run: sleep 50s
+
+      # Rest of the workflow steps
+
+      - name: Release shared resource
+        run: |
+          rm group.lock
