@@ -32,12 +32,12 @@ jobs:
             echo "File does not exist!"
           fi
       - name: waiting 
-        if: ${{ steps.check_lock.outputs.file_exists == true }}
+        if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
         run: |
                echo " waiting for previous workflow completed"
                sleep 10s
       - name: create lock
-        if: ${{ steps.check_lock.outputs.file_exists == false }}
+        if: ${{ steps.check_lock.outputs.file_exists == 'false' }}
         run: |
               touch lock2
               git config --local user.email "chennasai1@gmail.com"
