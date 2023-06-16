@@ -31,6 +31,12 @@ jobs:
           else
             echo "File does not exist!"
           fi
+      - name: waiting 
+        run: |
+          if [ "$file_exists" == "true" ] 
+              
+               echo " waiting for previous workflow completed"
+               sleep 10s
       - name: create lock
         run: |
           if [ "$file_exists" == false ]
@@ -40,12 +46,7 @@ jobs:
               git add lock4
               git commit -m "Add lock2 file"
               git push https://github.com/$GITHUB_REPOSITORY.git
-      - name: waiting 
-        run: |
-          if [ "$file_exists" == "true" ] 
-              
-               echo " waiting for previous workflow completed"
-               sleep 10s
+      
             
       - name: run the script
         run: sleep 50s
