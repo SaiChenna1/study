@@ -19,7 +19,7 @@ jobs:
         env:
           ACCESS_TOKEN: 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
         run: |
-          git config --local user.email "chennasai1@github.com"
+          git config --local user.email "chennasai1@gmail.com"
           git config --local user.name "SaiChenna1"
           git add group.lock
           git commit -m "Add group.lock file"
