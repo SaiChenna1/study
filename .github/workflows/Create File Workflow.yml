@@ -16,7 +16,7 @@ jobs:
       - name: Check if group is running
         id: check_lock
         run: |
-          file_path="lock3"
+          file_path="lock4"
           if [  -f "$file_path" ]; then
             echo "::set-output name=file_exists::true"
             else
@@ -37,14 +37,15 @@ jobs:
           if [ "$file_exists" == "false" ]; then
      
              run: |
-     
+             env:
+                ACCESS_TOKEN: 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
           
-             touch lock3
+             touch lock4
             
               git config --local user.email "chennasai1@gmail.com"
               git config --local user.name "SaiChenna1"
-              git add lock3
-              git commit -m "Add lock3 file"
+              git add lock4
+              git commit -m "Add lock4 file"
               git push https://github.com/$GITHUB_REPOSITORY.git
           else
                run: |
@@ -80,7 +81,7 @@ jobs:
       - name: Delete file
         run: |
           
-          file_path="SaiChenna1/study/lock3"
+          file_path="SaiChenna1/study/lock4"
 
           git rm "$file_path"
           git commit -m "Delete file $file_path"
