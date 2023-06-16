@@ -11,9 +11,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
+      - name: Check if group is running
+        run: |
+          if [ -f lock ]; then
+            echo "Group is already running, exiting workflow."
+            exit 0
+          fi
 
       - name: Create file
-        run: touch group.lock
+        run: touch lock
+        
 
       - name: Commit and push file
         env:
@@ -21,17 +29,12 @@ jobs:
         run: |
           git config --local user.email "chennasai1@gmail.com"
           git config --local user.name "SaiChenna1"
-          git add group.lock
-          git commit -m "Add group.lock file"
+          git add lock
+          git commit -m "Add lock file"
           git push https://github.com/$GITHUB_REPOSITORY.git
           # HEAD:refs/heads/$GITHUB_REF
           
-      - name: Check if group is running
-        run: |
-          if [ -f group.lock ]; then
-            echo "Group is already running, exiting workflow."
-            exit 0
-          fi
+      
       - name: run the script
         run: sleep 50s
 
@@ -39,4 +42,4 @@ jobs:
 
       - name: Release shared resource
         run: |
-          rm group.lock
+          rm lock
