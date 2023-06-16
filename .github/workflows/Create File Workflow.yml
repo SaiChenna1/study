@@ -17,10 +17,19 @@ jobs:
         run: |
           file_path="SaiChenna1/study/lock2"
           if [  -f "$file_path" ]; then
-            echo "::set-output name=lock::true"
+            echo "::set-output name=file_exists::true"
             else
-            echo " ::set-output name=lock::false"
+            echo " ::set-output name=file_exists::false"
             fi
+      - name: Use file existence status
+        run: |
+          file_exists=${{ steps.check_lock.outputs.file_exists }}
+
+          if [ "$file_exists" == "true" ]; then
+            echo "File exists!"
+          else
+            echo "File does not exist!"
+          fi
       - name: create lock
         if: steps.check_lock.outputs.lock != 'true'
         env:
