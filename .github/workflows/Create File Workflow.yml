@@ -31,11 +31,18 @@ jobs:
           else
             echo "File does not exist!"
           fi
-      - name: waiting 
-        if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
+      - name: waiting
         run: |
-               echo " waiting for previous workflow completed"
-               sleep 10s
+          while[[$(steps.check_lock.outputs.file_exists == 'true')]]; do echo " waiting" sleep 10 done
+          echo " waiting"
+          sleep 10
+          done
+          
+#       - name: waiting 
+#         if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
+#         run: |
+#                echo " waiting for previous workflow completed"
+#                sleep 10s
       - name: create lock
         if: ${{ steps.check_lock.outputs.file_exists == 'false' }}
         run: |
