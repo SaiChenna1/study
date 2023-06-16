@@ -22,13 +22,13 @@ jobs:
             fi
       - name: create lock
         if: steps.check_lock.outputs.lock != 'true'
+        env:
+            ACCESS_TOKEN: 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
         run: |
      
           
             touch lock1
-            env:
-            ACCESS_TOKEN: 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
-         
+            
             git config --local user.email "chennasai1@gmail.com"
             git config --local user.name "SaiChenna1"
             git add lock1
