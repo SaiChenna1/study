@@ -20,22 +20,20 @@ jobs:
             else
             echo " ::set-output name=lock::false"
             fi
-      - name: exit if locked
+      - name: create lock
+        if: steps.check_lock.outputs.lock != 'true'
         run: |
-          if [["${{steps.check_lock.outputs.lock}}" == true ]]; then
-          echo " job is already running"
-          exit 0
-          else
-          run: |
-          touch lock1
-          env:
-          ACCESS_TOKEN: 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
+     
+          
+            touch lock1
+            env:
+            ACCESS_TOKEN: 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
          
-          git config --local user.email "chennasai1@gmail.com"
-          git config --local user.name "SaiChenna1"
-          git add lock1
-          git commit -m "Add lock1 file"
-          git push https://github.com/$GITHUB_REPOSITORY.git
+            git config --local user.email "chennasai1@gmail.com"
+            git config --local user.name "SaiChenna1"
+            git add lock1
+            git commit -m "Add lock1 file"
+            git push https://github.com/$GITHUB_REPOSITORY.git
           # HEAD:refs/heads/$GITHUB_REF
           
           
