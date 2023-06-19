@@ -1,0 +1,35 @@
+name: concurrency
+on:
+  workflow_dispatch
+#concurrency:
+ # group: mygroup
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for lock file deletion
+        run: |
+          while [[ $(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Authorization: Bearer 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" "https://api.github.com/repos/SaiChenna1/study/contents/lock6.txt") == "200" ]]; do
+            sleep 10
+          done
+      - name: Create lock file
+        run: |
+          curl -s -X PUT -H "Authorization: Bearer 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" -d '{"message": "Create lock file", "content": ""}' "https://api.github.com/repos/SaiChenna1/study/contents/lock6.txt"
+      - name: Print message
+        run: echo "This is lock1"
+      - name: Delete lock file
+        env:
+          TOKEN: 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
+          OWNER: SaiChenna1
+          REPO: study
+          FILE_PATH: lock6.txt
+        run: |
+          RESPONSE=$(curl -X GET -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/$OWNER/$REPO/contents/$FILE_PATH")
+          SHA=$(echo "$RESPONSE" | jq -r '.sha')
+          URL=$(echo "$RESPONSE" | jq -r '.url')
+          RESPONSE=$(curl -X DELETE -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -d '{"sha": "'"$SHA"'"}' -w "%{http_code}" "https://api.github.com/repos/$OWNER/$REPO/contents/$FILE_PATH")
+          echo "$RESPONSE"
+          if [[ $RESPONSE != "204" ]]; then
+            echo "Failed to delete lock file"
+            exit 1
+          fi
