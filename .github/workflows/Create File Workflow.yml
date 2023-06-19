@@ -34,7 +34,7 @@ jobs:
       - name: Wait for lock file deletion
         if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
         run: |
-          while [[ $(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Authorization: Bearer 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" "https://api.github.com/repos/SaiChenna1/study/contents/lock.txt") == "200" ]]; do
+          while [[ $(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Authorization: Bearer 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" "https://api.github.com/repos/SaiChenna1/study/contents/lock5.txt") == "200" ]]; do
             sleep 10
           done
           
