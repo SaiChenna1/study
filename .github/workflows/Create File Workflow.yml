@@ -31,12 +31,19 @@ jobs:
           else
             echo "File does not exist!"
           fi
-      - name: Wait for lock file deletion
-        if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
+      - name: Wait for file deletion
+        id: wait_for_deletion
         run: |
-          while [[ $(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Authorization: Bearer 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" "https://api.github.com/repos/SaiChenna1/study/contents/lock5.txt") == "200" ]]; do
-            sleep 10
+          while [[ ${{ steps.check_lock.outputs.file_exists }} == 'true' ]]; do
+            sleep 30
+            echo "File still exists. Waiting..."
           done
+#       - name: Wait for lock file deletion
+#         if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
+#         run: |
+#           while [[ $(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Authorization: Bearer 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" "https://api.github.com/repos/SaiChenna1/study/contents/lock5.txt") == "200" ]]; do
+#             sleep 10
+#           done
           
 #       - name: waiting 
 #         if: ${{ steps.check_lock.outputs.file_exists == 'true' }}
